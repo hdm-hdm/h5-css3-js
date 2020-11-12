@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Function.prototype.bind = function(obj, ...args) {
+            var self = this
+            if (typeof this !== 'function') return;
+            return function() {
+                self.call(obj, ...args)
+            }
+
+        }
+        var o = {
+            name: 'hdm'
+        }
+
+        function func() {
+            console.log(this.name);
+            console.log(arguments[1]);
+        }
+        var f = func.bind(o, 'hh', 1);
+        f();
+    </script>
+</body>
+
+</html>

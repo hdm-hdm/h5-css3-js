@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //拷贝一层，引用数据类型拷贝的只是他的引用
+        function copy(oldObj, newObj) {
+            for (var k in oldObj) {
+                if (oldObj.hasOwnProperty(k)) {
+                    newObj[k] = oldObj[k]
+
+                }
+            }
+            return newObj
+        }
+        var o = {};
+        var obj = {
+            id: 1,
+            name: 'hdm',
+            arr: [1, 2, 3],
+            o2: {
+                id: 11,
+                name: 'hdmhdm'
+            }
+
+        }
+        var newO = copy(obj, o)
+        o.name = 'zxn'
+        obj.o2.name = 'zxn'
+        console.log(o);
+        console.log(obj);
+    </script>
+</body>
+
+</html>

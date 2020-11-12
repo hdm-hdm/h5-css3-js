@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //打擂法，指定一个位置，让这个位置上的数跟之后的每一个位置比较，满足条件就交换位置
+        function chooseOder(arr) {
+            var max;
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[i] < arr[j]) {
+                        max = arr[j];
+                        arr[j] = arr[i];
+                        arr[i] = max
+                    }
+                }
+            }
+        }
+        var arr = [36, 6, 12, 5, 32, 16, 17, 9];
+        chooseOder(arr)
+        console.log(arr);
+    </script>
+</body>
+
+</html>

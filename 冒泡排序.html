@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [36, 6, 12, 5, 32, 16, 17, 9]
+            //轮数是数组长度-1
+            //每一轮执行次数是数组长度-当前轮数
+
+        function mOrder(arr) {
+            var min;
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - (i + 1); j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        min = arr[j + 1];
+                        arr[j + 1] = arr[j]
+                        arr[j] = min
+                    }
+
+
+                }
+
+            }
+
+        }
+        mOrder(arr)
+        console.log(arr);
+    </script>
+</body>
+
+</html>

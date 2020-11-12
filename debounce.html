@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content {
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            color: #fff;
+            background-color: #ccc;
+            font-size: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+    <script>
+        let num = 1;
+        let content = document.getElementById('content');
+
+        function count() {
+            content.innerHTML = num++;
+        };
+        content.onmousemove = debouce1(count, 1000);
+
+        function debounce(func, delay) {
+            //防抖，指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间。
+            //非立即执行版
+            let timeout;
+            // let context = this;//window
+            // let args = arguments
+            return function() {
+                console.log(this); //content
+                if (timeout) clearTimeout(timeout)
+                timeout = setTimeout(() => {
+                    console.log(this); //content
+                    func.call(this, arguments)
+                }, delay)
+            }
+        }
+        //立即执行版
+        function debouce1(func, delay) {
+            let timeout;
+            return function() {
+                let callNow = !timeout;
+                if (timeout) clearTimeout(timeout)
+                timeout = setTimeout(() => {
+                    timeout = null
+                }, delay)
+                if (callNow) func.call(this, arguments)
+            }
+        }
+    </script>
+</body>
+
+</html>

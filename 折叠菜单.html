@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #list {
+            width: 300px;
+            height: 500px;
+            display: none;
+        }
+        
+        #list div {
+            margin-top: 8px;
+            width: 300px;
+            height: 100px;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu">菜单</button>
+    <div id="list">
+        <div>第1栏</div>
+        <div>第2栏</div>
+        <div>第3栏</div>
+        <div>第4栏</div>
+        <div>第5栏</div>
+    </div>
+    <script>
+        var oBtn = document.querySelector('.menu');
+        var oList = document.getElementById('list')
+        oBtn.onclick = function(ev) {
+            var e = ev || window.event;
+            e.stopPropagation ? e.stopPropagation() : cancelBubble = true
+            oList.style.display = 'block'
+
+            console.log('555');
+        }
+        document.onclick = function() {
+
+            oList.style.display = 'none'
+        }
+    </script>
+</body>
+
+</html>

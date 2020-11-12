@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slide {
+            position: relative;
+            width: 800px;
+            height: 30px;
+            border: 1px solid pink;
+            margin: 20px auto;
+        }
+        
+        #block {
+            position: absolute;
+            top: 0;
+            left: 0px;
+            width: 30px;
+            height: 30px;
+            background-color: green;
+            z-index: 1;
+        }
+        
+        #fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide">
+        <div id="block"></div>
+        <div id="fill"></div>
+    </div>
+    <script>
+        var oBlock = document.getElementById('block');
+        var oFill = document.getElementById('fill')
+        var l = localStorage.getItem('slide') ? localStorage.getItem('slide') : 0
+        oBlock.style.left = l + 'px';
+        oFill.style.width = l + 'px';
+        oBlock.onmousedown = function(ev) {
+            var e = ev || window.event;
+            //获取父元素到body的水平距离
+            var offsetX = e.clientX - oBlock.offsetLeft;
+            document.onmousemove = function(ev) {
+                var e = ev || window.event;
+                //获取鼠标到父元素的水平距离
+                var l = e.clientX - offsetX;
+                if (l < 0) {
+                    l = 0;
+                } else if (l > 770) {
+                    l = 770
+                }
+                //将l缓存在本地
+                localStorage.setItem('slide', l)
+                oBlock.style.left = l + 'px';
+                oFill.style.width = l + 'px';
+            }
+            document.onmouseup = function() {
+                document.onmousemove = null;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

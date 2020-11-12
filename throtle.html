@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content {
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            color: #fff;
+            background-color: #ccc;
+            font-size: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+    <script>
+        let num = 1;
+        let content = document.getElementById('content');
+
+        function count() {
+            content.innerHTML = num++;
+        };
+        content.onmousemove = throttle1(count, 5000);
+        //节流，就是指连续触发事件但是在 n 秒中只执行一次函数。节流会稀释函数的执行频率。
+        //时间戳版
+        function throttle(func, delay) {
+            // 放在返回函数之外，保存prev值
+            let prev = 0;
+            return function() {
+                let now = Date.now();
+                if (now - prev > delay) {
+                    func.call(this, arguments);
+                    prev = now
+                }
+
+            }
+        }
+        //时钟版
+        function throttle1(func, delay) {
+            let timeout;
+            return function() {
+                if (!timeout) {
+                    timeout = setTimeout(() => {
+                        timeout = null;
+                        func.call(this, arguments)
+                    }, delay)
+                }
+
+
+            }
+        }
+    </script>
+</body>
+
+</html>

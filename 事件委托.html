@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #main {
+            margin: 10px auto;
+            width: 250px;
+            height: 600px;
+        }
+        
+        #main ul {
+            list-style: none;
+            background-color: gray;
+        }
+        
+        #main li {
+            border: 1px solid #fff;
+            width: 100%;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul id="parent">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <button class="btn">添加结点</button>
+    </div>
+    <script>
+        //事件委托
+        //子元素的事件委托给父元素处理
+        //事件委托的实现步骤：
+        //1.找到需要触发的对象的父节点或祖先结点
+        //2.把事件设置在父节点上
+        //3.获取触发对象，判断触发对象是否是想要的触发对象，如果是进行后续操作
+        var parent = document.getElementById('parent');
+        var oLi = parent.getElementsByTagName('li')
+        parent.onclick = function(ev) {
+            var e = ev || window.event;
+            var target = e.target || window.event.target;
+            for (var i = 0; i < oLi.length; i++) {
+                oLi[i].style.backgroundColor = 'gray'
+                    // console.log(i);
+            }
+            target.style.backgroundColor = 'red'
+        }
+        var btn = document.getElementsByClassName('btn')[0]
+        var num = 5
+        btn.onclick = function() {
+            var li = document.createElement('li');
+            li.innerHTML = ++num
+            parent.append(li)
+        }
+    </script>
+</body>
+
+</html>
